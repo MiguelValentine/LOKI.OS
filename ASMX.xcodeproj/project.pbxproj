@@ -1,0 +1,78 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		A211BADF1C86B2B800B44B2C /* system.nasm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.nasm; path = system.nasm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.NASM; };
+		A211BAE01C86B2B800B44B2C /* system.lst */ = {isa = PBXFileReference; lastKnownFileType = text; path = system.lst; sourceTree = "<group>"; };
+		A211BAE21C86B32900B44B2C /* bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bin; sourceTree = "<group>"; };
+		A2F9C44C1CACF569007E959E /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		A211BAD81C86B25B00B44B2C = {
+			isa = PBXGroup;
+			children = (
+				A211BAE21C86B32900B44B2C /* bin */,
+				A2F9C44C1CACF569007E959E /* include */,
+				A211BADF1C86B2B800B44B2C /* system.nasm */,
+				A211BAE01C86B2B800B44B2C /* system.lst */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		A211BAD91C86B25B00B44B2C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+			};
+			buildConfigurationList = A211BADC1C86B25B00B44B2C /* Build configuration list for PBXProject "ASMX" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A211BAD81C86B25B00B44B2C;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		A211BADD1C86B25B00B44B2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		A211BADE1C86B25B00B44B2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A211BADC1C86B25B00B44B2C /* Build configuration list for PBXProject "ASMX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A211BADD1C86B25B00B44B2C /* Debug */,
+				A211BADE1C86B25B00B44B2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A211BAD91C86B25B00B44B2C /* Project object */;
+}
