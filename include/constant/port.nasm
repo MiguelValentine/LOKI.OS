@@ -160,7 +160,7 @@ EQU_IO_PP2_CONTROL                equ 0x027A
 ;2E2-2E3 Data acquisition adapter (AT)
 
 ;IBM保留
-;2E8-2EF COM4 non PS2 UART (Reserved by IBM) (see UART)
+;2E8-2EF COM3 non PS2 UART (Reserved by IBM) (see UART)
 
 ;保留
 ;2F0-2F7 Reserved
@@ -280,24 +280,3 @@ EQU_IO_FDC0_DIGITAL_INPUT         equ 0x03F7
 ;AA 第一串口 AA0
 ;3F8-3FF COM1 Primary Asynchronous Adapter (see UART)3F0 Diskette controller status A:
 
-;6E2-6E3  AT Data Acquisition Adapter 1
-;790-793  Cluster Adapter 1
-;AE2-AE3  AT Data Acquisition Adapter 2
-;B90-B93  Cluster Adapter 2
-;EE2-EE3  AT Data Acquisition Adapter 3
-;B90-B93  Cluster Adapter 3
-;22E1    AT GPIB Adapter 1
-;2390-2393 Cluster Adapter 4
-;42E1    AT GPIB Adapter 2
-;3220    Serial Port COM3:   PS/2 Asychronous Adaptor
-;3228    Serial Port COM4:   PS/2 Asychronous Adaptor
-;4220    Serial Port COM5:   PS/2 Asychronous Adaptor
-;4228    Serial Port COM6:   PS/2 Asychronous Adaptor
-;42E1    AT GPIB Adapter 2
-;5220    Serial Port COM7:   PS/2 Asychronous Adaptor
-;5228    Serial Port COM8:   PS/2 Asychronous Adaptor
-;62E1    AT GPIB Adapter 3
-;82E1    AT GPIB Adapter 4
-;A2E1    AT GPIB Adapter 5
-;C2E1    AT GPIB Adapter 6
-;E2E1    AT GPIB Adapter 7

@@ -166,7 +166,7 @@
    160                              <2> ;2E2-2E3 Data acquisition adapter (AT)
    161                              <2> 
    162                              <2> ;IBM保留
-   163                              <2> ;2E8-2EF COM4 non PS2 UART (Reserved by IBM) (see UART)
+   163                              <2> ;2E8-2EF COM3 non PS2 UART (Reserved by IBM) (see UART)
    164                              <2> 
    165                              <2> ;保留
    166                              <2> ;2F0-2F7 Reserved
@@ -286,27 +286,282 @@
    280                              <2> ;AA 第一串口 AA0
    281                              <2> ;3F8-3FF COM1 Primary Asynchronous Adapter (see UART)3F0 Diskette controller status A:
    282                              <2> 
-   283                              <2> ;6E2-6E3  AT Data Acquisition Adapter 1
-   284                              <2> ;790-793  Cluster Adapter 1
-   285                              <2> ;AE2-AE3  AT Data Acquisition Adapter 2
-   286                              <2> ;B90-B93  Cluster Adapter 2
-   287                              <2> ;EE2-EE3  AT Data Acquisition Adapter 3
-   288                              <2> ;B90-B93  Cluster Adapter 3
-   289                              <2> ;22E1    AT GPIB Adapter 1
-   290                              <2> ;2390-2393 Cluster Adapter 4
-   291                              <2> ;42E1    AT GPIB Adapter 2
-   292                              <2> ;3220    Serial Port COM3:   PS/2 Asychronous Adaptor
-   293                              <2> ;3228    Serial Port COM4:   PS/2 Asychronous Adaptor
-   294                              <2> ;4220    Serial Port COM5:   PS/2 Asychronous Adaptor
-   295                              <2> ;4228    Serial Port COM6:   PS/2 Asychronous Adaptor
-   296                              <2> ;42E1    AT GPIB Adapter 2
-   297                              <2> ;5220    Serial Port COM7:   PS/2 Asychronous Adaptor
-   298                              <2> ;5228    Serial Port COM8:   PS/2 Asychronous Adaptor
-   299                              <2> ;62E1    AT GPIB Adapter 3
-   300                              <2> ;82E1    AT GPIB Adapter 4
-   301                              <2> ;A2E1    AT GPIB Adapter 5
-   302                              <2> ;C2E1    AT GPIB Adapter 6
-   303                              <2> ;E2E1    AT GPIB Adapter 7
+     5                              <1> 
+     6                              <1> ;MSR
+     7                              <1> %include "include/constant/msr.nasm"
+     1                              <2> ;MSR EQU_MSR
+     2                              <2> 
+     3                              <2> ;NAME                             ;VALUE
+     4                              <2> 
+     5                              <2> EQU_MSR_MC_ADDR                   equ 0x0000
+     6                              <2> EQU_MSR_MC_TYPE                   equ 0x0001
+     7                              <2> EQU_MSR_MONITOR_FILTER_SIZE       equ 0x0006
+     8                              <2> EQU_MSR_TIME_STAMP_COUNTER        equ 0x0010
+     9                              <2> EQU_MSR_PLATFORM_ID               equ 0x0017
+    10                              <2> EQU_MSR_APIC_BASE                 equ 0x001B
+    11                              <2> EQU_MSR_FEATURE_CONTROL           equ 0x003A
+    12                              <2> EQU_MSR_TSC_ADJUST                equ 0x003B
+    13                              <2> EQU_MSR_BIOS_UPDT_TRIG            equ 0x0079
+    14                              <2> EQU_MSR_BIOS_SIGN_ID              equ 0x008B
+    15                              <2> EQU_MSR_SMM_MONITOR_CTL           equ 0x009B
+    16                              <2> EQU_MSR_SMBASE                    equ 0x009E
+    17                              <2> EQU_MSR_PMC0                      equ 0x00C1
+    18                              <2> EQU_MSR_PMC1                      equ 0x00C2
+    19                              <2> EQU_MSR_PMC2                      equ 0x00C3
+    20                              <2> EQU_MSR_PMC3                      equ 0x00C4
+    21                              <2> EQU_MSR_PMC4                      equ 0x00C5
+    22                              <2> EQU_MSR_PMC5                      equ 0x00C6
+    23                              <2> EQU_MSR_PMC6                      equ 0x00C7
+    24                              <2> EQU_MSR_PMC7                      equ 0x00C8
+    25                              <2> EQU_MSR_MPERF                     equ 0x00E7
+    26                              <2> EQU_MSR_APERF                     equ 0x00E8
+    27                              <2> EQU_MSR_MTRRCAP                   equ 0x00FE
+    28                              <2> EQU_MSR_SYSENTER_CS               equ 0x0174
+    29                              <2> EQU_MSR_SYSENTER_ESP              equ 0x0175
+    30                              <2> EQU_MSR_SYSENTER_EIP              equ 0x0176
+    31                              <2> EQU_MSR_MCG_CAP                   equ 0x0179
+    32                              <2> EQU_MSR_MCG_STATUS                equ 0x017A
+    33                              <2> EQU_MSR_MCG_CTL                   equ 0x017B
+    34                              <2> EQU_MSR_PERFEVTSEL0               equ 0x0186
+    35                              <2> EQU_MSR_PERFEVTSEL1               equ 0x0187
+    36                              <2> EQU_MSR_PERFEVTSEL2               equ 0x0188
+    37                              <2> EQU_MSR_PERFEVTSEL3               equ 0x0189
+    38                              <2> EQU_MSR_PERF_STATUS               equ 0x0198
+    39                              <2> EQU_MSR_PERF_CTL                  equ 0x0199
+    40                              <2> EQU_MSR_CLOCK_MODULATION          equ 0x019A
+    41                              <2> EQU_MSR_THERM_INTERRUPT           equ 0x019B
+    42                              <2> EQU_MSR_THERM_STATUS              equ 0x019C
+    43                              <2> EQU_MSR_MISC_ENABLE               equ 0x01A0
+    44                              <2> EQU_MSR_ENERGY_PERF_BIAS          equ 0x01B0
+    45                              <2> EQU_MSR_PACKAGE_THERM_STATUS      equ 0x01B1
+    46                              <2> EQU_MSR_PACKAGE_THERM_INTERRUPT   equ 0x01B2
+    47                              <2> EQU_MSR_DEBUGCTL                  equ 0x01D9
+    48                              <2> EQU_MSR_SMRR_PHYSBASE             equ 0x01F2
+    49                              <2> EQU_MSR_SMRR_PHYSMASK             equ 0x01F3
+    50                              <2> EQU_MSR_PLATFORM_DCA_CAP          equ 0x01F8
+    51                              <2> EQU_MSR_CPU_DCA_CAP               equ 0x01F9
+    52                              <2> EQU_MSR_DCA_0_CAP                 equ 0x01FA
+    53                              <2> EQU_MSR_MTRR_PHYSBASE0            equ 0x0200
+    54                              <2> EQU_MSR_MTRR_PHYSMASK0            equ 0x0201
+    55                              <2> EQU_MSR_MTRR_PHYSBASE1            equ 0x0202
+    56                              <2> EQU_MSR_MTRR_PHYSMASK1            equ 0x0203
+    57                              <2> EQU_MSR_MTRR_PHYSBASE2            equ 0x0204
+    58                              <2> EQU_MSR_MTRR_PHYSMASK2            equ 0x0205
+    59                              <2> EQU_MSR_MTRR_PHYSBASE3            equ 0x0206
+    60                              <2> EQU_MSR_MTRR_PHYSMASK3            equ 0x0207
+    61                              <2> EQU_MSR_MTRR_PHYSBASE4            equ 0x0208
+    62                              <2> EQU_MSR_MTRR_PHYSMASK4            equ 0x0209
+    63                              <2> EQU_MSR_MTRR_PHYSBASE5            equ 0x020A
+    64                              <2> EQU_MSR_MTRR_PHYSMASK5            equ 0x020B
+    65                              <2> EQU_MSR_MTRR_PHYSBASE6            equ 0x020C
+    66                              <2> EQU_MSR_MTRR_PHYSMASK6            equ 0x020D
+    67                              <2> EQU_MSR_MTRR_PHYSBASE7            equ 0x020E
+    68                              <2> EQU_MSR_MTRR_PHYSMASK7            equ 0x020F
+    69                              <2> EQU_MSR_MTRR_PHYSBASE8            equ 0x0210
+    70                              <2> EQU_MSR_MTRR_PHYSMASK8            equ 0x0211
+    71                              <2> EQU_MSR_MTRR_PHYSBASE9            equ 0x0212
+    72                              <2> EQU_MSR_MTRR_PHYSMASK9            equ 0x0213
+    73                              <2> EQU_MSR_MTRR_FIX64K_00000         equ 0x0250
+    74                              <2> EQU_MSR_MTRR_FIX16K_80000         equ 0x0258
+    75                              <2> EQU_MSR_MTRR_FIX16K_A0000         equ 0x0259
+    76                              <2> EQU_MSR_MTRR_FIX4K_C0000          equ 0x0268
+    77                              <2> EQU_MSR_MTRR_FIX4K_C8000          equ 0x0269
+    78                              <2> EQU_MSR_MTRR_FIX4K_D0000          equ 0x026A
+    79                              <2> EQU_MSR_MTRR_FIX4K_D8000          equ 0x026B
+    80                              <2> EQU_MSR_MTRR_FIX4K_E0000          equ 0x026C
+    81                              <2> EQU_MSR_MTRR_FIX4K_E8000          equ 0x026D
+    82                              <2> EQU_MSR_MTRR_FIX4K_F0000          equ 0x026E
+    83                              <2> EQU_MSR_MTRR_FIX4K_F8000          equ 0x026F
+    84                              <2> EQU_MSR_PAT                       equ 0x0277
+    85                              <2> EQU_MSR_MC0_CTL2                  equ 0x0280
+    86                              <2> EQU_MSR_MC1_CTL2                  equ 0x0281
+    87                              <2> EQU_MSR_MC2_CTL2                  equ 0x0282
+    88                              <2> EQU_MSR_MC3_CTL2                  equ 0x0283
+    89                              <2> EQU_MSR_MC4_CTL2                  equ 0x0284
+    90                              <2> EQU_MSR_MC5_CTL2                  equ 0x0285
+    91                              <2> EQU_MSR_MC6_CTL2                  equ 0x0286
+    92                              <2> EQU_MSR_MC7_CTL2                  equ 0x0287
+    93                              <2> EQU_MSR_MC8_CTL2                  equ 0x0288
+    94                              <2> EQU_MSR_MC9_CTL2                  equ 0x0289
+    95                              <2> EQU_MSR_MC10_CTL2                 equ 0x028A
+    96                              <2> EQU_MSR_MC11_CTL2                 equ 0x028B
+    97                              <2> EQU_MSR_MC12_CTL2                 equ 0x028C
+    98                              <2> EQU_MSR_MC13_CTL2                 equ 0x028D
+    99                              <2> EQU_MSR_MC14_CTL2                 equ 0x028E
+   100                              <2> EQU_MSR_MC15_CTL2                 equ 0x028F
+   101                              <2> EQU_MSR_MC16_CTL2                 equ 0x0290
+   102                              <2> EQU_MSR_MC17_CTL2                 equ 0x0291
+   103                              <2> EQU_MSR_MC18_CTL2                 equ 0x0292
+   104                              <2> EQU_MSR_MC19_CTL2                 equ 0x0293
+   105                              <2> EQU_MSR_MC20_CTL2                 equ 0x0294
+   106                              <2> EQU_MSR_MC21_CTL2                 equ 0x0295
+   107                              <2> EQU_MSR_MC22_CTL2                 equ 0x0296
+   108                              <2> EQU_MSR_MC23_CTL2                 equ 0x0297
+   109                              <2> EQU_MSR_MC24_CTL2                 equ 0x0298
+   110                              <2> EQU_MSR_MC25_CTL2                 equ 0x0299
+   111                              <2> EQU_MSR_MC26_CTL2                 equ 0x029A
+   112                              <2> EQU_MSR_MC27_CTL2                 equ 0x029B
+   113                              <2> EQU_MSR_MC28_CTL2                 equ 0x029C
+   114                              <2> EQU_MSR_MC29_CTL2                 equ 0x029D
+   115                              <2> EQU_MSR_MC30_CTL2                 equ 0x029E
+   116                              <2> EQU_MSR_MC31_CTL2                 equ 0x029F
+   117                              <2> EQU_MSR_MTRR_DEF_TYPE             equ 0x02FF
+   118                              <2> EQU_MSR_FIXED_CTR0                equ 0x0309
+   119                              <2> EQU_MSR_FIXED_CTR1                equ 0x030A
+   120                              <2> EQU_MSR_FIXED_CTR2                equ 0x030B
+   121                              <2> EQU_MSR_PERF_CAPABILITIES         equ 0x0345
+   122                              <2> EQU_MSR_FIXED_CTR_CTRL            equ 0x038D
+   123                              <2> EQU_MSR_PERF_GLOBAL_STATUS        equ 0x038E
+   124                              <2> EQU_MSR_PERF_GLOBAL_CTRL          equ 0x038F
+   125                              <2> EQU_MSR_PERF_GLOBAL_OVF_CTRL      equ 0x0390
+   126                              <2> EQU_MSR_PERF_GLOBAL_STATUS_RESET  equ 0x0390
+   127                              <2> EQU_MSR_PERF_GLOBAL_STATUS_SET    equ 0x0391
+   128                              <2> EQU_MSR_PERF_GLOBAL_INUSE         equ 0x0392
+   129                              <2> EQU_MSR_PEBS_ENABLE               equ 0x03F1
+   130                              <2> EQU_MSR_MC0_CTL                   equ 0x0400
+   131                              <2> EQU_MSR_MC0_STATUS                equ 0x0401
+   132                              <2> EQU_MSR_MC0_ADDR                  equ 0x0402
+   133                              <2> EQU_MSR_MC0_MISC                  equ 0x0403
+   134                              <2> EQU_MSR_MC1_CTL                   equ 0x0404
+   135                              <2> EQU_MSR_MC1_STATUS                equ 0x0405
+   136                              <2> EQU_MSR_MC1_ADDR                  equ 0x0406
+   137                              <2> EQU_MSR_MC1_MISC                  equ 0x0407
+   138                              <2> EQU_MSR_MC2_CTL                   equ 0x0408
+   139                              <2> EQU_MSR_MC2_STATUS                equ 0x0409
+   140                              <2> EQU_MSR_MC2_ADDR                  equ 0x040A
+   141                              <2> EQU_MSR_MC2_MISC                  equ 0x040B
+   142                              <2> EQU_MSR_MC3_CTL                   equ 0x040C
+   143                              <2> EQU_MSR_MC3_STATUS                equ 0x040D
+   144                              <2> EQU_MSR_MC3_ADDR                  equ 0x040E
+   145                              <2> EQU_MSR_MC3_MISC                  equ 0x040F
+   146                              <2> EQU_MSR_MC4_CTL                   equ 0x0410
+   147                              <2> EQU_MSR_MC4_STATUS                equ 0x0411
+   148                              <2> EQU_MSR_MC4_ADDR                  equ 0x0412
+   149                              <2> EQU_MSR_MC4_MISC                  equ 0x0413
+   150                              <2> EQU_MSR_MC5_CTL                   equ 0x0414
+   151                              <2> EQU_MSR_MC5_STATUS                equ 0x0415
+   152                              <2> EQU_MSR_MC5_ADDR                  equ 0x0416
+   153                              <2> EQU_MSR_MC5_MISC                  equ 0x0417
+   154                              <2> EQU_MSR_MC6_CTL                   equ 0x0418
+   155                              <2> EQU_MSR_MC6_STATUS                equ 0x0419
+   156                              <2> EQU_MSR_MC6_ADDR                  equ 0x041A
+   157                              <2> EQU_MSR_MC6_MISC                  equ 0x041B
+   158                              <2> EQU_MSR_MC7_CTL                   equ 0x041C
+   159                              <2> EQU_MSR_MC7_STATUS                equ 0x041D
+   160                              <2> EQU_MSR_MC7_ADDR                  equ 0x041E
+   161                              <2> EQU_MSR_MC7_MISC                  equ 0x042F
+   162                              <2> EQU_MSR_MC8_CTL                   equ 0x0420
+   163                              <2> EQU_MSR_MC8_STATUS                equ 0x0421
+   164                              <2> EQU_MSR_MC8_ADDR                  equ 0x0422
+   165                              <2> EQU_MSR_MC8_MISC                  equ 0x0423
+   166                              <2> EQU_MSR_MC9_CTL                   equ 0x0424
+   167                              <2> EQU_MSR_MC9_STATUS                equ 0x0425
+   168                              <2> EQU_MSR_MC9_ADDR                  equ 0x0426
+   169                              <2> EQU_MSR_MC9_MISC                  equ 0x0427
+   170                              <2> EQU_MSR_MC10_CTL                  equ 0x0428
+   171                              <2> EQU_MSR_MC10_STATUS               equ 0x0429
+   172                              <2> EQU_MSR_MC10_ADDR                 equ 0x042A
+   173                              <2> EQU_MSR_MC10_MISC                 equ 0x042B
+   174                              <2> EQU_MSR_MC11_CTL                  equ 0x042C
+   175                              <2> EQU_MSR_MC11_STATUS               equ 0x042D
+   176                              <2> EQU_MSR_MC11_ADDR                 equ 0x042E
+   177                              <2> EQU_MSR_MC11_MISC                 equ 0x042F
+   178                              <2> EQU_MSR_MC12_CTL                  equ 0x0430
+   179                              <2> EQU_MSR_MC12_STATUS               equ 0x0431
+   180                              <2> EQU_MSR_MC12_ADDR                 equ 0x0432
+   181                              <2> EQU_MSR_MC12_MISC                 equ 0x0433
+   182                              <2> EQU_MSR_MC13_CTL                  equ 0x0434
+   183                              <2> EQU_MSR_MC13_STATUS               equ 0x0435
+   184                              <2> EQU_MSR_MC13_ADDR                 equ 0x0436
+   185                              <2> EQU_MSR_MC13_MISC                 equ 0x0437
+   186                              <2> EQU_MSR_MC14_CTL                  equ 0x0438
+   187                              <2> EQU_MSR_MC14_STATUS               equ 0x0439
+   188                              <2> EQU_MSR_MC14_ADDR                 equ 0x043A
+   189                              <2> EQU_MSR_MC14_MISC                 equ 0x043B
+   190                              <2> EQU_MSR_MC15_CTL                  equ 0x043C
+   191                              <2> EQU_MSR_MC15_STATUS               equ 0x043D
+   192                              <2> EQU_MSR_MC15_ADDR                 equ 0x043E
+   193                              <2> EQU_MSR_MC15_MISC                 equ 0x043F
+   194                              <2> EQU_MSR_MC16_CTL                  equ 0x0440
+   195                              <2> EQU_MSR_MC16_STATUS               equ 0x0441
+   196                              <2> EQU_MSR_MC16_ADDR                 equ 0x0442
+   197                              <2> EQU_MSR_MC16_MISC                 equ 0x0443
+   198                              <2> EQU_MSR_MC17_CTL                  equ 0x0444
+   199                              <2> EQU_MSR_MC17_STATUS               equ 0x0445
+   200                              <2> EQU_MSR_MC17_ADDR                 equ 0x0446
+   201                              <2> EQU_MSR_MC17_MISC                 equ 0x0447
+   202                              <2> EQU_MSR_MC18_CTL                  equ 0x0448
+   203                              <2> EQU_MSR_MC18_STATUS               equ 0x0449
+   204                              <2> EQU_MSR_MC18_ADDR                 equ 0x044A
+   205                              <2> EQU_MSR_MC18_MISC                 equ 0x044B
+   206                              <2> EQU_MSR_MC19_CTL                  equ 0x044C
+   207                              <2> EQU_MSR_MC19_STATUS               equ 0x044D
+   208                              <2> EQU_MSR_MC19_ADDR                 equ 0x044E
+   209                              <2> EQU_MSR_MC19_MISC                 equ 0x044F
+   210                              <2> EQU_MSR_MC20_CTL                  equ 0x0450
+   211                              <2> EQU_MSR_MC20_STATUS               equ 0x0451
+   212                              <2> EQU_MSR_MC20_ADDR                 equ 0x0452
+   213                              <2> EQU_MSR_MC20_MISC                 equ 0x0453
+   214                              <2> EQU_MSR_MC21_CTL                  equ 0x0454
+   215                              <2> EQU_MSR_MC21_STATUS               equ 0x0455
+   216                              <2> EQU_MSR_MC21_ADDR                 equ 0x0456
+   217                              <2> EQU_MSR_MC21_MISC                 equ 0x0457
+   218                              <2> EQU_MSR_MC22_CTL                  equ 0x0458
+   219                              <2> EQU_MSR_MC22_STATUS               equ 0x0459
+   220                              <2> EQU_MSR_MC22_ADDR                 equ 0x045A
+   221                              <2> EQU_MSR_MC22_MISC                 equ 0x045B
+   222                              <2> EQU_MSR_MC23_CTL                  equ 0x045C
+   223                              <2> EQU_MSR_MC23_STATUS               equ 0x045D
+   224                              <2> EQU_MSR_MC23_ADDR                 equ 0x045E
+   225                              <2> EQU_MSR_MC23_MISC                 equ 0x045F
+   226                              <2> EQU_MSR_MC24_CTL                  equ 0x0460
+   227                              <2> EQU_MSR_MC24_STATUS               equ 0x0461
+   228                              <2> EQU_MSR_MC24_ADDR                 equ 0x0462
+   229                              <2> EQU_MSR_MC24_MISC                 equ 0x0463
+   230                              <2> EQU_MSR_MC25_CTL                  equ 0x0464
+   231                              <2> EQU_MSR_MC25_STATUS               equ 0x0465
+   232                              <2> EQU_MSR_MC25_ADDR                 equ 0x0466
+   233                              <2> EQU_MSR_MC25_MISC                 equ 0x0467
+   234                              <2> EQU_MSR_MC26_CTL                  equ 0x0468
+   235                              <2> EQU_MSR_MC26_STATUS               equ 0x0469
+   236                              <2> EQU_MSR_MC26_ADDR                 equ 0x046A
+   237                              <2> EQU_MSR_MC26_MISC                 equ 0x046B
+   238                              <2> EQU_MSR_MC27_CTL                  equ 0x046C
+   239                              <2> EQU_MSR_MC27_STATUS               equ 0x046D
+   240                              <2> EQU_MSR_MC27_ADDR                 equ 0x046E
+   241                              <2> EQU_MSR_MC27_MISC                 equ 0x046F
+   242                              <2> EQU_MSR_MC28_CTL                  equ 0x0470
+   243                              <2> EQU_MSR_MC28_STATUS               equ 0x0471
+   244                              <2> EQU_MSR_MC28_ADDR                 equ 0x0472
+   245                              <2> EQU_MSR_MC28_MISC                 equ 0x0473
+   246                              <2> EQU_MSR_VMX_BASIC                 equ 0x0480
+   247                              <2> EQU_MSR_VMX_PINBASED_CTLS         equ 0x0481
+   248                              <2> EQU_MSR_VMX_PROCBASED_CTLS        equ 0x0482
+   249                              <2> EQU_MSR_VMX_EXIT_CTLS             equ 0x0483
+   250                              <2> EQU_MSR_VMX_ENTRY_CTLS            equ 0x0484
+   251                              <2> EQU_MSR_VMX_MISC                  equ 0x0485
+   252                              <2> EQU_MSR_VMX_CR0_FIXED0            equ 0x0486
+   253                              <2> EQU_MSR_VMX_CR0_FIXED1            equ 0x0487
+   254                              <2> EQU_MSR_VMX_CR4_FIXED0            equ 0x0488
+   255                              <2> EQU_MSR_VMX_CR4_FIXED1            equ 0x0489
+   256                              <2> EQU_MSR_VMX_VMCS_ENUM             equ 0x048A
+   257                              <2> EQU_MSR_VMX_PROCBASED_CTLS2       equ 0x048B
+   258                              <2> EQU_MSR_VMX_EPT_VPID_CAP          equ 0x048C
+   259                              <2> EQU_MSR_VMX_TRUE_PINBASED_CTLS    equ 0x048D
+   260                              <2> EQU_MSR_VMX_TRUE_PROCBASED_CTLS   equ 0x048E
+   261                              <2> EQU_MSR_VMX_TRUE_EXIT_CTLS        equ 0x048F
+   262                              <2> EQU_MSR_VMX_TRUE_ENTRY_CTLS       equ 0x0490
+   263                              <2> EQU_MSR_VMX_VMFUNC                equ 0x0491
+   264                              <2> EQU_MSR_A_PMC0                    equ 0x04C1
+   265                              <2> EQU_MSR_A_PMC1                    equ 0x04C2
+   266                              <2> EQU_MSR_A_PMC2                    equ 0x04C3
+   267                              <2> EQU_MSR_A_PMC3                    equ 0x04C4
+   268                              <2> EQU_MSR_A_PMC4                    equ 0x04C5
+   269                              <2> EQU_MSR_A_PMC5                    equ 0x04C6
+   270                              <2> EQU_MSR_A_PMC6                    equ 0x04C7
+   271                              <2> EQU_MSR_A_PMC7                    equ 0x04C8
+   272                              <2> EQU_MSR_MCG_EXT_CTL               equ 0x04D0
+   273                              <2> EQU_MSR_SGX_SVN_STATUS            equ 0x0500
      3                                  
      4                                  ;宏
      5                                  %include "include/macro/index.nasm"
