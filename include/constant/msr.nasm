@@ -1,3 +1,5 @@
+%ifndef MOD_MSR
+%define MOD_MSR
 ;MSR EQU_MSR
 
 ;NAME                             ;VALUE
@@ -355,3 +357,5 @@ EQU_MSR_FS_BASE                   equ 0xC0000100
 EQU_MSR_GS_BASE                   equ 0xC0000101
 EQU_MSR_KERNEL_GS_BASE            equ 0xC0000102
 EQU_MSR_TSC_AUX                   equ 0xC0000103
+
+%endif

@@ -1,3 +1,5 @@
+%ifndef MOD_PORT
+%define MOD_PORT
 ;端口 EQU_IO
 
 ;NAME                             ;VALUE
@@ -280,3 +282,4 @@ EQU_IO_FDC0_DIGITAL_INPUT         equ 0x03F7
 ;AA 第一串口 AA0
 ;3F8-3FF COM1 Primary Asynchronous Adapter (see UART)3F0 Diskette controller status A:
 
+%endif
