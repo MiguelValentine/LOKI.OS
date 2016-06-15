@@ -1,0 +1,1 @@
+SECTION UEFI vstart=EQU_UEFI_START align=16
