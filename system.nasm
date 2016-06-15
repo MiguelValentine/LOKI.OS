@@ -1,3 +1,6 @@
+; Copyright (c) 2016-2017 Miguel Valentine
+; All rights reserved.
+
 ;配置
 %include "include/config.nasm"
 

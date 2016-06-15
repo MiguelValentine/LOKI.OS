@@ -1,5 +1,5 @@
-;MOD_SIZE
-;@ MIGUEL VALENTINE
+; Copyright (c) 2016-2017 Miguel Valentine
+; All rights reserved.
 
 %ifndef MOD_SIZE
 %define MOD_SIZE

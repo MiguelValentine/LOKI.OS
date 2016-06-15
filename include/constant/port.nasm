@@ -1,3 +1,6 @@
+; Copyright (c) 2016-2017 Miguel Valentine
+; All rights reserved.
+
 %ifndef MOD_PORT
 %define MOD_PORT
 ;端口 EQU_IO

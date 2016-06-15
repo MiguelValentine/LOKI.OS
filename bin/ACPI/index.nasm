@@ -1,6 +1,6 @@
-;ACPI SUPPORT
-;@ MIGUEL VALENTINE
-;@ Advanced Configuration and Power Interface Specification
+; ACPI SUPPORT
+; Copyright (c) 2016-2017 Miguel Valentine
+; All rights reserved.
 
 EQU_ACPI_SIGNATURE  equ 'RSD PTR '
 
