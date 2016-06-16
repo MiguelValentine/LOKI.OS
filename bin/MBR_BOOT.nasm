@@ -22,8 +22,6 @@ SECTION BOOT vstart=EQU_START_BOOT align=16
 
     LIB_NMI_DISABLE
     LIB_A20_ENABLE
-
-    BOOT_LOAD_KERNEL:
         
     BOOT_GDT_INSTALL:
         mov eax,EQU_START_GDT
@@ -42,16 +40,67 @@ SECTION BOOT vstart=EQU_START_BOOT align=16
         mov word [cs:BOOT_GDT_SEC],cx
         lgdt [cs:BOOT_GDT_SEC]
 
-        hlt
-
-
     BOOT_IDT_INSTALL:
+        mov eax,EQU_START_IDT
+        shr eax,4
+        mov ds,ax
+
+        xor cx,cx
+
+        LIB_IDT 0,0,0,0,0,0
+
+        dec cx
+
+        mov word [cs:BOOT_IDT_SEC],cx
+        lidt [cs:BOOT_IDT_SEC]
 
     BOOT_PAE:
         mov eax,cr4
         bts eax,5
         mov cr4,eax
+
     BOOT_PAGING:
+        ;MAP 1G ADDRESS - FLAT
+        mov eax,EQU_START_PDT
+        shr eax,4
+        mov ds,ax
+
+        xor esi,esi
+        xor edi,edi
+        mov cx,512
+        .PDE_ONE:
+            mov eax,edi
+            mov ebx,edi
+            and edi,0xfffff
+            or  edi,(0x80|111B)&0xfff
+            mov dword [esi],edi
+
+            and eax,0xfff00000
+            shr eax,20
+            mov dword [esi+0x04],eax
+
+            mov edi,ebx
+            add esi,0x08
+            add edi,0x200000
+
+            loop .PDE_ONE
+
+        mov eax,EQU_START_PDPT
+        shr eax,4
+        mov ds,ax
+
+        LIB_PDPTE 0,0,EQU_START_PDT,111B,0
+
+        mov eax,EQU_START_PML4T
+        shr eax,4
+        mov ds,ax
+
+        LIB_PML4E 0,0,EQU_START_PDPT,111B,0
+
+    BOOT_PML4T:
+        mov eax,EQU_START_PML4T
+        mov cr3,eax
+
     BOOT_LONG_MODE:
         mov ecx,EQU_MSR_EFER
         rdmsr
@@ -63,8 +112,7 @@ SECTION BOOT vstart=EQU_START_BOOT align=16
         bts eax,31
         mov cr0,eax
 
-        ;JMP
-    hlt
+        jmp EQU_GDT_X64_CODE:BOOT_X64
 
     BOOT_LONGMODE_DISABLE:
         mov ebx,BOOT_TEXT_LONGMODE_DISABLE
@@ -84,5 +132,10 @@ SECTION BOOT vstart=EQU_START_BOOT align=16
         dw 0
         dd EQU_START_IDT
 
+[bits 64]
+    BOOT_X64:
+        mov rax,0x1122334455667788
+        hlt
+[bits 16]
     BOOT_END:
         LIB_FILL EQU_SIZE_BOOT

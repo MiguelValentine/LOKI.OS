@@ -12,17 +12,24 @@
 
     ;BOOT
     EQU_START_BOOT              equ 0x7e00
-    EQU_SIZE_BOOT               equ 512
+    EQU_SIZE_BOOT               equ 1024
     EQU_DP_BOOT                 equ 1
 
     ;KERNEL
     EQU_START_KERNEL            equ 0x100000
     EQU_SIZE_KERNEL             equ 512
-    EQU_DP_KERNEL               equ 1
+    EQU_DP_KERNEL               equ 3
 
     ;GDT
     EQU_START_GDT               equ 0x20000
 
     ;IDT
-    EQU_START_IDT               equ 0x30000
+    EQU_START_IDT               equ 0x40000
+
+    ;PML4T
+    EQU_START_PML4T             equ 0x41000
+    ;PDPT
+    EQU_START_PDPT              equ 0x42000
+    ;PDT
+    EQU_START_PDT               equ 0x50000
 %endif
