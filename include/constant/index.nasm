@@ -8,3 +8,9 @@
 
 ;MSR
 %include "include/constant/msr.nasm"
+
+;GDT
+%include "include/constant/gdt.nasm"
+
+;IDT
+%include "include/constant/idt.nasm"

@@ -4,7 +4,7 @@
 %ifndef MOD_CONFIG
 %define MOD_CONFIG
 
-%include "include/size.nasm"
+%include "include/config/size.nasm"
 
 ;启动方式
 ;0 MBR

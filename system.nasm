@@ -2,7 +2,7 @@
 ; All rights reserved.
 
 ;配置
-%include "include/config.nasm"
+%include "include/config/index.nasm"
 
 ;常量
 %include "include/constant/index.nasm"
@@ -16,4 +16,5 @@
 %else
     ;LEGACY-BIOS BOOT
     %include "bin/MBR.nasm"
+    %include "bin/MBR_BOOT.nasm"
 %endif

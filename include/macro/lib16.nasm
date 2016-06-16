@@ -45,4 +45,29 @@
     ret
 %endmacro
 
+;------------------------------------------------
+;   LIB16_PRINT
+;------------------------------------------------
+%macro LIB16_PRINT 0
+    push ax
+    push cx
+    push es
+    mov di,0
+    mov cx,[bx]
+    mov ax,0xB800
+    mov es,ax
+    add bx,2
+    %%LIB16_PRINT_CHAR:
+        mov ah,7
+        mov al,[bx]
+        mov [es:di],ax
+        add di,2
+        inc bx
+        loop %%LIB16_PRINT_CHAR
+    pop es
+    pop cx
+    pop ax
+    ret
+%endmacro
+
 %endif
