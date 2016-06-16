@@ -1,1 +1,3 @@
-# LOKI.OS
+#Loki OS
+
+Developing
