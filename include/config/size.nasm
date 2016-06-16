@@ -23,6 +23,9 @@
     ;GDT
     EQU_START_GDT               equ 0x20000
 
+    ;SMRAM
+    EQU_START_SMRAM             equ 0x30000
+
     ;IDT
     EQU_START_IDT               equ 0x40000
 

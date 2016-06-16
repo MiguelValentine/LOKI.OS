@@ -32,8 +32,8 @@ SECTION BOOT vstart=EQU_START_BOOT align=16
 
         LIB_GDT 0,0,0,0,0,0
         
-        LIB_GDT 0,EQU_GDT_X64_CODE    ,0  ,0xFFFFF    ,1010B  ,0x98
-        LIB_GDT 0,EQU_GDT_X64_DATA    ,0  ,0xFFFFF    ,1000B  ,0x92
+        LIB_GDT 0,EQU_GDT_X64_CODE    ,0        ,0xFFFFF    ,1010B  ,0x98
+        LIB_GDT 0,EQU_GDT_X64_DATA    ,0        ,0xFFFFF    ,1000B  ,0x92
 
         dec cx
 
@@ -134,7 +134,8 @@ SECTION BOOT vstart=EQU_START_BOOT align=16
 
 [bits 64]
     BOOT_X64:
-        mov rax,0x1122334455667788
+        ;LOAD KERNEL
+        
         hlt
 [bits 16]
     BOOT_END:
