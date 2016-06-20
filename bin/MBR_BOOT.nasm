@@ -134,9 +134,16 @@ SECTION BOOT vstart=EQU_START_BOOT align=16
 
 [bits 64]
     BOOT_X64:
-        ;LOAD KERNEL
-        
+        mov ax,EQU_GDT_X64_DATA
+        mov ds,ax
+        mov es,ax
+        mov fs,ax
+        mov gs,ax
+        mov ss,ax
+        mov rsp,0x80000
+    BOOT_ACPI:
+        %include "bin/ACPI/index.nasm"
+
         hlt
-[bits 16]
     BOOT_END:
         LIB_FILL EQU_SIZE_BOOT

@@ -19,5 +19,4 @@
     %include "bin/MBR_BOOT.nasm"
 %endif
 
-
 %include "bin/KERNEL.nasm"

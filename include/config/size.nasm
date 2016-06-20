@@ -35,4 +35,8 @@
     EQU_START_PDPT              equ 0x42000
     ;PDT
     EQU_START_PDT               equ 0x50000
+
+    ;ACPI
+    EQU_START_RSDP              equ 0x60000
+
 %endif
