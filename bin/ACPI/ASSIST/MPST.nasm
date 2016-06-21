@@ -1,0 +1,4 @@
+ACPI_MPST:
+
+ACPI_MPST_DONE:
+    ret

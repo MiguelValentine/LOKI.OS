@@ -1,0 +1,4 @@
+ACPI_ECDT:
+
+ACPI_ECDT_DONE:
+ret

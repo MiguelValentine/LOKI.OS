@@ -1,0 +1,4 @@
+ACPI_SBST:
+
+ACPI_SBST_DONE:
+    ret

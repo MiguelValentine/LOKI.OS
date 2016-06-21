@@ -1,0 +1,4 @@
+ACPI_MADT:
+
+ACPI_MADT_DONE:
+    ret

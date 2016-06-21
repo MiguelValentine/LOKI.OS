@@ -1,0 +1,4 @@
+ACPI_BGRT:
+
+ACPI_BGRT_DONE:
+    ret

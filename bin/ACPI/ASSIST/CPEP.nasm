@@ -1,0 +1,4 @@
+ACPI_CPEP:
+
+ACPI_CPEP_DONE:
+    ret

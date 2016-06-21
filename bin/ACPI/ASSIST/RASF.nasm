@@ -1,0 +1,4 @@
+ACPI_RASF:
+
+ACPI_RASF_DONE:
+    ret

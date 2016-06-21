@@ -69,19 +69,16 @@ SECTION BOOT vstart=EQU_START_BOOT align=16
         xor edi,edi
         mov cx,512
         .PDE_ONE:
-            mov eax,edi
             mov ebx,edi
-            and edi,0xfffff
+            and edi,0xfffe0000
             or  edi,(0x80|111B)&0xfff
             mov dword [esi],edi
 
-            and eax,0xfff00000
-            shr eax,20
-            mov dword [esi+0x04],eax
+            mov dword [esi+0x04],0
 
             mov edi,ebx
             add esi,0x08
-            add edi,0x2
+            add edi,0x200000
 
             loop .PDE_ONE
 
@@ -141,8 +138,7 @@ SECTION BOOT vstart=EQU_START_BOOT align=16
         mov gs,ax
         mov ss,ax
         mov rsp,0x80000
-    BOOT_ACPI:
-        %include "bin/ACPI/index.nasm"
+
 
         hlt
     BOOT_PRINT_ONELINE:

@@ -1,0 +1,4 @@
+ACPI_MSCT:
+
+ACPI_MACT_DONE:
+    ret

@@ -1,0 +1,4 @@
+ACPI_SRAT:
+
+ACPI_SRAT_DONE:
+    ret

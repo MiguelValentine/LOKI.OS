@@ -1,0 +1,4 @@
+ACPI_SLIT:
+
+ACPI_SLIT_DONE:
+    ret

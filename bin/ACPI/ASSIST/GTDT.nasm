@@ -1,0 +1,4 @@
+ACPI_GTDT:
+
+ACPI_GTDT_DONE:
+    ret

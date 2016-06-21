@@ -1,0 +1,4 @@
+ACPI_FACS:
+
+ACPI_FACS_DONE:
+    ret

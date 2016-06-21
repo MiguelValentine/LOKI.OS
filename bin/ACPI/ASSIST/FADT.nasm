@@ -1,0 +1,4 @@
+ACPI_FADT:
+
+ACPI_FADT_DONE:
+    ret
