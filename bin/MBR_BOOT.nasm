@@ -81,7 +81,7 @@ SECTION BOOT vstart=EQU_START_BOOT align=16
 
             mov edi,ebx
             add esi,0x08
-            add edi,0x200000
+            add edi,0x2
 
             loop .PDE_ONE
 
@@ -145,5 +145,18 @@ SECTION BOOT vstart=EQU_START_BOOT align=16
         %include "bin/ACPI/index.nasm"
 
         hlt
+    BOOT_PRINT_ONELINE:
+        mov rdi,0xB8000
+        xor rcx,rcx
+        mov cx,[rbx]
+        add rbx,2
+        BOOT_PRINT_ONELINE_CHAR:
+            mov ah,7
+            mov al,[rbx]
+            mov [rdi],ax
+            add rdi,2
+            inc rbx
+            loop BOOT_PRINT_ONELINE_CHAR
+        ret
     BOOT_END:
         LIB_FILL EQU_SIZE_BOOT
