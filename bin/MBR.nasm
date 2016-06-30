@@ -2,13 +2,16 @@
 ; All rights reserved.
 [bits 16]
 SECTION MBR vstart=EQU_START_MBR align=16
-
     MBR_START:
-
         cli
+        cld
         LIB_A20_ENABLE
 
-        mov sp,0
+        mov ax,cs
+        mov ds,ax
+        mov es,ax
+        mov ss,ax
+        xor sp,sp
 
         mov cx,EQU_SIZE_BOOT/512
         mov esi,EQU_DP_BOOT
@@ -18,7 +21,6 @@ SECTION MBR vstart=EQU_START_MBR align=16
 
         jmp 0:EQU_START_BOOT
         hlt
-
     MBR_DISK_LOAD:
         LIB16_BIOS_DISKLOAD
     MBR_PDT:

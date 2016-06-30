@@ -12,13 +12,13 @@
 
     ;BOOT
     EQU_START_BOOT              equ 0x7e00
-    EQU_SIZE_BOOT               equ 1536
+    EQU_SIZE_BOOT               equ 4096
     EQU_DP_BOOT                 equ 1
 
     ;KERNEL
     EQU_START_KERNEL            equ 0x100000
     EQU_SIZE_KERNEL             equ 512
-    EQU_DP_KERNEL               equ 4
+    EQU_DP_KERNEL               equ 9
 
     ;GDT
     EQU_START_GDT               equ 0x20000
@@ -39,4 +39,10 @@
     ;ACPI
     EQU_START_RSDP              equ 0x60000
     EQU_START_RSDT              equ 0x61000
+
+    ;PCI(E)
+    EQU_START_PCI               equ 0x70000
+
+    ;STACK
+    EQU_START_STACK             equ 0x80000
 %endif

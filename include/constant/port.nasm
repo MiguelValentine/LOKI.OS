@@ -285,4 +285,9 @@ EQU_IO_FDC0_DIGITAL_INPUT         equ 0x03F7
 ;AA 第一串口 AA0
 ;3F8-3FF COM1 Primary Asynchronous Adapter (see UART)3F0 Diskette controller status A:
 
+;legecy PCI  PCI
+;CF0-CFF
+EQU_IO_PCI_CONFIG_ADDR             equ 0x0CF8
+EQU_IO_PCI_CONFIG_DATA             equ 0x0CFC
+
 %endif

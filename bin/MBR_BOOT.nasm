@@ -116,7 +116,7 @@ SECTION BOOT vstart=EQU_START_BOOT align=16
         call BOOT_PRINT
         hlt
     BOOT_TEXT_LONGMODE_DISABLE:
-        LIB_TEXT 'X64 architecture only,Halt!'
+        LIB_TEXT 'X64 architecture only,Halt!!!'
     BOOT_CLS:
         LIB16_CLS
     BOOT_PRINT:
@@ -137,22 +137,104 @@ SECTION BOOT vstart=EQU_START_BOOT align=16
         mov fs,ax
         mov gs,ax
         mov ss,ax
-        mov rsp,0x80000
+        mov rsp,EQU_START_STACK
 
+    BOOT_FAST_PCI:
+        xor rax,rax
+        xor rbx,rbx
+        xor rcx,rcx
+        xor rdx,rdx
+        xor r15,r15
+        xor rsi,rsi
+        ;BUS
+        BOOT_FAST_PCI_BUS:
+        xor rbx,rbx
+            ;DEV
+            BOOT_FAST_PCI_DEV:
+            xor rcx,rcx
+                ;FUNC
+                BOOT_FAST_PCI_FUNC:
+                push rax
+                push rdx
+
+                call BOOT_FAST_PCI_GEN_CONFIG
+                mov r10,rax
+
+                mov dx,EQU_IO_PCI_CONFIG_ADDR
+                out dx,eax
+                mov dx,EQU_IO_PCI_CONFIG_DATA
+                in  eax,dx
+
+                cmp ax,0xFFFF
+                je  BOOT_FAST_PCI_FUNC_END
+
+                call BOOT_FAST_PCI_ONE
+
+                BOOT_FAST_PCI_FUNC_END:
+                pop rdx
+                pop rax
+                inc ecx
+                cmp ecx,8
+                jne BOOT_FAST_PCI_FUNC
+            inc ebx
+            cmp ebx,32
+            jne BOOT_FAST_PCI_DEV
+        inc eax
+        cmp eax,256
+        jne BOOT_FAST_PCI_BUS
+
+    BOOT_FAST_ATA:
+        
 
         hlt
-    BOOT_PRINT_ONELINE:
-        mov rdi,0xB8000
-        xor rcx,rcx
-        mov cx,[rbx]
-        add rbx,2
-        BOOT_PRINT_ONELINE_CHAR:
-            mov ah,7
-            mov al,[rbx]
-            mov [rdi],ax
-            add rdi,2
-            inc rbx
-            loop BOOT_PRINT_ONELINE_CHAR
+
+    BOOT_FAST_PCI_GEN_CONFIG:
+        mov r8,rbx
+        mov r9,rcx
+        shl eax,16
+        shl r8d,11
+        shl r9d,8
+        shl edx,2
+        or  eax,0x80000000
+        or  eax,r8d
+        or  eax,r9d
+        or  eax,edx
+        ret
+
+    ;224MAX
+    BOOT_FAST_PCI_ONE:
+        xor rdx,rdx
+        mov rax,r10
+
+        inc r15
+        cmp r15,224
+        je BOOT_FAST_PCI_ONE_END
+
+        mov [EQU_START_PCI+rsi],eax
+        add rsi,4
+
+        BOOT_FAST_PCI_ONE_RECORD:
+        push rax
+        push rdx
+
+        call BOOT_FAST_PCI_GEN_CONFIG
+
+        mov dx,EQU_IO_PCI_CONFIG_ADDR
+        out dx,eax
+        mov dx,EQU_IO_PCI_CONFIG_DATA
+        in  eax,dx
+
+        mov [EQU_START_PCI+rsi],eax
+        add rsi,4
+
+        pop  rdx
+        pop  rax
+
+        inc  rdx
+        cmp  rdx,16
+        jne  BOOT_FAST_PCI_ONE_RECORD
+
+    BOOT_FAST_PCI_ONE_END:
         ret
     BOOT_END:
         LIB_FILL EQU_SIZE_BOOT
